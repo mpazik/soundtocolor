@@ -1,0 +1,54 @@
+<h2>Welcome to the test</h2>
+<p>Here you will be presented with [number] of questions. 
+  Please listen to the sound and intuitively associate the color with a sound.
+<b>Please turn on the speakers.</b></p>
+<!--text-center-->
+<div *ngFor="let question of questions; let i = index"class="card card-space">
+    <img class="card-img-top" src="" alt="">
+    <div class="card-header">
+      <h5 class="card-title">Question {{i}}</h5>
+    </div>
+    <div class="card-body text-left">
+        <button type="button" class="btn btn-dark" (click)="toneJS()">Play the sound</button>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Use slider to change the color or input HSL values.</p>
+    </div>
+    <div class="card-body color-div text-center">
+        <div id="cp{{i}}" data-color="hsl(360, 100%, 50%)">
+            <input type="text" class="form-control input-lg"/>
+        </div>
+    </div>
+    <div class="card-footer text-muted left">
+        <button type="button" class="btn btn-dark">Save color and next</button>
+    </div>
+  </div>
+
+
+  <h1>{{title}}</h1>
+  <p>Heroes:</p>
+  <ul>
+    <li *ngFor="let hero of heroes">
+      {{ hero }}
+    </li>
+  </ul>
+
+<div hidden> 
+<h2 [ngClass]="{
+  'gray': h2Style,
+  'large': !h2Style
+}">Example 1</h2>
+
+
+<h1 [style.color]="h2Style ? 'gray': 'black'">Example 2</h1> 
+If h2Style is true then it's gray, if false then it's black
+
+<h1 [ngStyle]="{
+  'color': h2Style ? 'gray' : 'black',
+  'font-size': !h2Style ? '1em' : '4em'
+}">Example 3</h1>
+If h2Style doesn't exsist then '1em'
+
+<button (click)="firstClick()">Test examples</button>
+</div>
+

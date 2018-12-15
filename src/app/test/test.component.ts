@@ -18,6 +18,7 @@ export class TestComponent implements OnInit {
   questions: [];
   heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
   title = 'Tour of Heroes';
+  noteToPlay = "C4";
 
   researchQuestion: ResearchQuestion = {
     id: 1,
@@ -29,20 +30,31 @@ export class TestComponent implements OnInit {
   ngOnInit() {
 
     var notes = ["A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5"];
-    function shuffle(arr) {
-      for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
-      return arr;
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+    
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+    
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+    
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+    
+      return array;
     }
     var notesShuffled = shuffle(notes);
     console.log(notesShuffled)
     console.log(notes.length)
     this.questions = notesShuffled;
 
-    //create a synth and connect it to the master output (your speakers)
-    var synth = new Tone.Synth().toMaster();
-
-    //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease("C4", "8n");
+    var synth = new Tone.Synth().toMaster();   
+    synth.triggerAttackRelease("C5", "8n");
 
 
 
@@ -83,11 +95,13 @@ export class TestComponent implements OnInit {
     this.h2Style = true;
   }
 
-  toneJS(){
+  toneJS(noteToPlay){
     //create a synth and connect it to the master output (your speakers)
     var synth = new Tone.Synth().toMaster();
-
+    
+    noteToPlay = "C4";
     //play a middle 'C' for the duration of an 8th note
-    synth.triggerAttackRelease("C4", "8n");
+    synth.triggerAttackRelease(noteToPlay, "8n");
   }
 }
+

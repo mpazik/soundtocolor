@@ -158,7 +158,7 @@ export class TestComponent implements OnInit {
 
   addAnswer(newAnswer: string){
     console.log("newanswer: "+newAnswer)
-    this.userReply.A4.A41 =newAnswer;
+    this.userReply.A4.A41 =newAnswer.substring(4, newAnswer.indexOf(","));
     console.log(this.userReply.A4.A41);
   }
 }

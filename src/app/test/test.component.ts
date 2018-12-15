@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 import $ from 'jquery'
 declare var $: $
 import 'bootstrap-colorpicker';
@@ -19,6 +20,64 @@ export class TestComponent implements OnInit {
   heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
   title = 'Tour of Heroes';
   noteToPlay = "C4";
+  userReply = {
+    "A4": {
+      "A41":"",
+      "A42":"",
+      "A43":"",
+      "A44":"",
+      "A45":""
+    },
+    "B4": {
+      "B41":"",
+      "B42":"",
+      "B43":"",
+      "B44":"",
+      "B45":""
+    },
+    "C4": {
+      "C41":"",
+      "C42":"",
+      "C43":"",
+      "C44":"",
+      "C45":""
+    },
+    "D4": {
+      "D41":"",
+      "D42":"",
+      "D43":"",
+      "D44":"",
+      "D45":""
+    },
+    "E4": {
+      "E41":"",
+      "E42":"",
+      "E43":"",
+      "E44":"",
+      "E45":""
+    },
+    "F4": {
+      "F41":"",
+      "F42":"",
+      "F43":"",
+      "F44":"",
+      "F45":""
+    },
+    "G4": {
+      "G41":"",
+      "G42":"",
+      "G43":"",
+      "G44":"",
+      "G45":""
+    },
+    "A5": {
+      "A51":"",
+      "A52":"",
+      "A53":"",
+      "A54":"",
+      "A55":""
+    }
+   }
 
   researchQuestion: ResearchQuestion = {
     id: 1,
@@ -32,15 +91,11 @@ export class TestComponent implements OnInit {
     var notes = ["A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5","A4","B4","C5","D5","E5","F5","G5","A5"];
     function shuffle(array) {
       var currentIndex = array.length, temporaryValue, randomIndex;
-    
-      // While there remain elements to shuffle...
       while (0 !== currentIndex) {
-    
-        // Pick a remaining element...
+  
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
     
-        // And swap it with the current element.
         temporaryValue = array[currentIndex];
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
@@ -95,13 +150,16 @@ export class TestComponent implements OnInit {
     this.h2Style = true;
   }
 
-  toneJS(noteToPlay){
-    //create a synth and connect it to the master output (your speakers)
+  toneJS(someobject): void{
     var synth = new Tone.Synth().toMaster();
-    
-    noteToPlay = "C4";
-    //play a middle 'C' for the duration of an 8th note
+    var noteToPlay = someobject.target.attributes['value'].value;
     synth.triggerAttackRelease(noteToPlay, "8n");
+  }
+
+  addAnswer(newAnswer: string){
+    console.log("newanswer: "+newAnswer)
+    this.userReply.A4.A41 =newAnswer;
+    console.log(this.userReply.A4.A41);
   }
 }
 

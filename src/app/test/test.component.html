@@ -3,35 +3,28 @@
   Please listen to the sound and intuitively associate the color with a sound.
 <b>Please turn on the speakers.</b></p>
 <!--text-center-->
-<div *ngFor="let question of questions; let i = index"class="card card-space">
+<div *ngFor="let question of questions; let i = index" class="card card-space">
     <img class="card-img-top" src="" alt="">
     <div class="card-header">
-      <h5 class="card-title">Question {{i}}</h5>
+      <h5 class="card-title">Question {{i}} + {{question}}</h5>
     </div>
     <div class="card-body text-left">
-        <button type="button" class="btn btn-dark" (click)="toneJS()">Play the sound</button>
+        <button type="button" class="btn btn-dark" (click)="toneJS($event)" value={{question}}>Play the sound</button>
     </div>
     <div class="card-body">
         <p class="card-text">Use slider to change the color or input HSL values.</p>
     </div>
     <div class="card-body color-div text-center">
         <div id="cp{{i}}" data-color="hsl(360, 100%, 50%)">
-            <input type="text" class="form-control input-lg"/>
+            <input  #newAnswer
+            (keyup.enter)="addAnswer(newAnswer.value)"
+            newAnswer.value='' type="text" class="form-control input-lg"/>
         </div>
     </div>
     <div class="card-footer text-muted left">
-        <button type="button" class="btn btn-dark">Save color and next</button>
+        <button type="button" class="btn btn-dark" (click)="addAnswer(newAnswer.value)">Save answer</button>
     </div>
   </div>
-
-
-  <h1>{{title}}</h1>
-  <p>Heroes:</p>
-  <ul>
-    <li *ngFor="let hero of heroes">
-      {{ hero }}
-    </li>
-  </ul>
 
 <div hidden> 
 <h2 [ngClass]="{

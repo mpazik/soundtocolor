@@ -1,4 +1,11 @@
 <h2>Welcome to the test</h2>
+
+<ul>
+    <li *ngFor="let participant of participants ">
+        <pre>{{ participant | json }}</pre>
+    </li>
+</ul>
+
 <p>Here you will be presented with [number] of questions. 
   Please listen to the sound and intuitively associate the color with a sound.
 <b>Please turn on the speakers.</b></p>
@@ -8,23 +15,29 @@
     <div class="card-header">
       <h5 class="card-title">Question {{i}} + {{question}}</h5>
     </div>
-    <div class="card-body text-left">
+    <div class="card-body text-left" id="playSound-{{question}}-{{i}}">
         <button type="button" class="btn btn-dark" (click)="toneJS($event)" value={{question}}>Play the sound</button>
     </div>
-    <div class="card-body">
-        <p class="card-text">Use slider to change the color or input HSL values.</p>
+    <div class="card-body" id="sliderTxt-{{question}}-{{i}}">
+        <p class="card-text">Use slider to change the color.</p>
     </div>
-    <div class="card-body color-div text-center">
+    <div class="card-body color-div text-center" id="card-body-picker-{{question}}-{{i}}">
         <div id="cp{{i}}" data-color="hsl(360, 100%, 50%)">
             <input  #newAnswer
             (keyup.enter)="addAnswer(newAnswer.value)"
-            newAnswer.value='' type="text" class="form-control input-lg"/>
+            newAnswer.value='' 
+            type="text" 
+            class="form-control input-lg"/>
         </div>
     </div>
     <div class="card-footer text-muted left">
-        <button type="button" class="btn btn-dark" (click)="addAnswer(newAnswer.value)">Save answer</button>
+        <button type="button" class="btn btn-dark" id="btn-{{question}}-{{i}}"
+        (click)="addAnswer(newAnswer.value, $event)"
+        value={{question}} name={{i}}>Save answer</button>
+        <p id="p-{{question}}-{{i}}" style="display: none">Your answer is saved!</p>
     </div>
-  </div>
+</div>
+  
 
 <div hidden> 
 <h2 [ngClass]="{

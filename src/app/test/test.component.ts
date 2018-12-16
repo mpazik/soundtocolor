@@ -4,7 +4,6 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Input } from '@angular/core';
 import $ from 'jquery'
 declare var $: $
-import 'bootstrap-colorpicker';
 import 'tone';
 import './research.ts'
 import { ResearchQuestion } from './research';
@@ -37,6 +36,7 @@ export class TestComponent implements OnInit {
     "G5": [],
     "A5": []
   }
+  participants = ['Marek']
 
   //public participants: AngularFireList<Participant[]>;
   // constructor(afDb: AngularFireDatabase) {
